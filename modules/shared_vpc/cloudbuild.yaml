@@ -1,0 +1,44 @@
+steps:
+  # 1. Syntax & Formatter Check
+  - name: 'hashicorp/terraform:1.6.0'
+    entrypoint: 'sh'
+    args: 
+      - '-c'
+      - |
+        terraform fmt -check -recursive
+
+  # 2. Dynamic Backend Initialization
+  - name: 'hashicorp/terraform:1.6.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        terraform init \
+          -backend-config="bucket=${_STATE_BUCKET}" \
+          -backend-config="prefix=terraform/state/shared-vpc-modular"
+
+  # 3. Dry-Run Evaluation Plan
+  - name: 'hashicorp/terraform:1.6.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        terraform plan -out=tfplan
+
+  # 4. Enforce Changes (Restricted strictly to the main trunk)
+  - name: 'hashicorp/terraform:1.6.0'
+    entrypoint: 'sh'
+    args:
+      - '-c'
+      - |
+        if [ "$BRANCH_NAME" = "main" ]; then
+          terraform apply -auto-approve tfplan
+        else
+          echo "Current branch is '$BRANCH_NAME'. Skipping automated deployment execution."
+        fi
+
+substitutions:
+  _STATE_BUCKET: 'your-global-tfstate-bucket-name'
+
+options:
+  logging: CLOUD_LOGGING_ONLY

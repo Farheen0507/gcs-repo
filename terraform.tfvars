@@ -1,0 +1,7 @@
+org_id             = "123456789012"
+billing_account    = "01A2B3-C4D5E6-F7G8H9"
+host_project_id    = "prod-net-host-project"
+service_project_id = "prod-app-service-project"
+region             = "us-central1"
+vpc_name           = "enterprise-shared-vpc"
+subnet_cidr        = "10.0.1.0/24"
