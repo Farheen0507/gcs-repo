@@ -1,5 +1,5 @@
 org_id             = "123456789012"
-billing_account    = "01A2B3-C4D5E6-F7G8H9"
+billing_account    = "01712E-946611-608CCE"
 host_project_id    = "prod-net-host-project"
 service_project_id = "prod-app-service-project"
 region             = "us-central1"
