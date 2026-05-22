@@ -8,7 +8,10 @@ terraform {
     }
   }
 
-  backend "gcs" {}
+  backend "gcs" {
+    bucket = "farheen-tf-state-bucket"
+    prefix = "terraform/state"
+  }
 }
 
 provider "google" {}
