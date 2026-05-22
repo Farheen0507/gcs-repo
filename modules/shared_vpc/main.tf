@@ -53,7 +53,7 @@ resource "google_compute_shared_vpc_host_project" "host" {
 resource "google_compute_shared_vpc_service_project" "service" {
   host_project    = google_project.host_project.project_id
   service_project = google_project.service_project.project_id
-  
+
   depends_on = [google_compute_shared_vpc_host_project.host, google_project_service.service_services]
 }
 
