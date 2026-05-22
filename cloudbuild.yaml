@@ -38,7 +38,7 @@ steps:
         fi
 
 substitutions:
-  _STATE_BUCKET: 'your-global-tfstate-bucket-name'
+  _STATE_BUCKET: 'farheen-tf-state-bucket'
 
 options:
   logging: CLOUD_LOGGING_ONLY
