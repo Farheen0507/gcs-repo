@@ -1,6 +1,6 @@
 steps:
   # 1. Syntax & Formatter Check
-  - name: 'hashicorp/terraform:1.6.0'
+  - name: 'hashicorp/terraform:1.6.6'
     entrypoint: 'sh'
     args: 
       - '-c'
