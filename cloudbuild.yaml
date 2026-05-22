@@ -8,7 +8,7 @@ steps:
         terraform fmt -check -recursive
 
   # 2. Dynamic Backend Initialization
-  - name: 'hashicorp/terraform:1.6.0'
+  - name: 'hashicorp/terraform:1.6.6'
     entrypoint: 'sh'
     args:
       - '-c'
@@ -18,7 +18,7 @@ steps:
           -backend-config="prefix=terraform/state/shared-vpc-modular"
 
   # 3. Dry-Run Evaluation Plan
-  - name: 'hashicorp/terraform:1.6.0'
+  - name: 'hashicorp/terraform:1.6.6'
     entrypoint: 'sh'
     args:
       - '-c'
@@ -26,7 +26,7 @@ steps:
         terraform plan -out=tfplan
 
   # 4. Enforce Changes (Restricted strictly to the main trunk)
-  - name: 'hashicorp/terraform:1.6.0'
+  - name: 'hashicorp/terraform:1.6.6'
     entrypoint: 'sh'
     args:
       - '-c'
